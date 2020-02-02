@@ -1,0 +1,1 @@
+C:\Users\psych\Source\Repos\Bot\Bot\Bot.UWP\Bot.UWP.csproj;x86

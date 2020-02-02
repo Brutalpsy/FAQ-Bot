@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Bot.Views.MainView"
+             xmlns:viewModelBase="clr-namespace:Bot.ViewModels.Base"
+             xmlns:uc="clr-namespace:Bot.Views.UserControl"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <uc:ChatViewCellTemplateSelector x:Key="chatTemplateSelector"></uc:ChatViewCellTemplateSelector>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListView Grid.Row="0"
+                      ItemTemplate="{StaticResource chatTemplateSelector}"
+                      ItemsSource="{Binding Messages, Mode=TwoWay}"
+                      HasUnevenRows="true"
+                      SeparatorVisibility="None"
+                      x:Name="chatListView"
+                      >
+            </ListView>
+            <StackLayout Orientation="Horizontal" 
+                         Grid.Row="1" 
+                         HorizontalOptions="FillAndExpand">
+                <Entry  HorizontalOptions="FillAndExpand" Text="{Binding Message, Mode=TwoWay}"/>
+                <Button  Text="Send"
+                         TextColor="White"
+                         WidthRequest="75"
+                         BackgroundColor="#0EB1D2"
+                         Command="{Binding SendCommand}"
+                         />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
